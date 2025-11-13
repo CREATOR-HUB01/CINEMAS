@@ -21,7 +21,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body>\n
+<noscript>
+  <div style="background:#111;color:#fff;padding:1rem;text-align:center;">
+    This site needs JavaScript to work properly — please enable JavaScript for full functionality.
+  </div>
+</noscript>
+
     <!-- Opening Animation -->
     <div id="opening-animation" class="opening-animation">
         <div class="logo-container">
@@ -32,7 +38,7 @@
     </div>
 
     <!-- Main Website -->
-    <div id="main-website" class="main-website hidden">
+    <div id="main-website" class="main-website">
         <!-- Header -->
         <header class="header">
             <div class="container">
@@ -294,5 +300,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="app.js"></script>
+
+<script>
+/* Safety: if a runtime error prevents the app from revealing the site,
+   ensure the main container becomes visible after a short timeout. */
+window.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){
+    var main = document.getElementById('main-website') || document.querySelector('.main-website');
+    if(main){
+      main.style.visibility = main.style.visibility || 'visible';
+      main.style.opacity = main.style.opacity || '1';
+      // remove 'hidden' classname if present
+      main.classList.remove && main.classList.remove('hidden');
+    }
+  }, 1200); // keep short so animation still shown if app.js runs
+});
+</script>
+
 </body>
 </html>

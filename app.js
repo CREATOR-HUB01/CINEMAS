@@ -1,3 +1,6 @@
+/* SAFETY WRAPPER START */
+(function(){
+try{
 // Global State
 let productsData = null;
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -875,3 +878,12 @@ function togglePolicy(element) {
     element.classList.toggle('active');
 }
 
+
+} catch(e){
+  console.error('App init error:', e);
+  // ensure UI becomes visible even on error
+  var main = document.getElementById('main-website') || document.querySelector('.main-website');
+  if(main){ main.classList.remove && main.classList.remove('hidden'); main.style.visibility='visible'; main.style.opacity='1'; }
+}
+})();
+/* SAFETY WRAPPER END */
